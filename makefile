@@ -1,5 +1,5 @@
-all: test.c
-	gcc test.c -o xr
+all: Lab1.c
+	gcc Lab1.c -o xr
 test: xr 1.txt 2.txt 
 	./xr 1.txt 2.txt out.txt
 	./xr out.txt 1.txt 22.txt
