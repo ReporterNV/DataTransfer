@@ -52,11 +52,25 @@ void repeat(unsigned char x)	//Кодирование дублированием
 	}
 }
 
-void main(int argc, char*argv[])
+int main(int argc, char*argv[])
 {
 	unsigned char x = 0;	//byte 
-	FILE *file = fopen("text", "r+b");
-	FILE *out = fopen("out", "w");
+	
+	FILE* file;
+	FILE* out;
+	printf("ARG: %s\n", argv[1] );
+	printf("ARG: %s\n", argv[2] );
+	printf("ARG: %s\n", argv[3] );
+	if((file = fopen(argv[1], "r+b")) == 0){
+	printf("Cannot open file:%s\n", argv[1]);
+	return 0;
+	}
+	if((out = fopen(argv[2], "w")) == 0){
+	printf("Cannot create file:%s\n", argv[2]);
+	fclose(file);
+	return 0;
+	}
+	if (!argv[3]){
 	while((fscanf(file, "%hhc", &x)) != EOF){ 
 	if(x == 10){
 		fprintf(out, "%c", 10);
@@ -72,9 +86,15 @@ void main(int argc, char*argv[])
 	fprintf(out,"%c",b1);
 	print_bin(b2);
 	fprintf(out,"%c",b2);
-	print_bin(repeat_decipher());
+	}}else{
+	while((fscanf(file, "%hhc", &b1)) != EOF){ 
+	if(x == 10){
+		fprintf(out, "%c", 10);
+		continue;}
+	fscanf(file, "%hhc", &b2); 	
+	repeat_decipher();
 	puts("");
-
+	}
 }
 	//x= 0b10110101;
 	/*printf("IN:");
@@ -94,4 +114,5 @@ void main(int argc, char*argv[])
 	 */
 	fclose(file);
 	fclose(out);
+	return 0;
 }
