@@ -43,7 +43,9 @@ unsigned char repeat_decipher()	//Кодирование дублировани�
 }
 
 void repeat(unsigned char x)	//Кодирование дублированием
-{
+{	
+	b1 = b2 = 0;
+
 	unsigned char out;
 	for (int i = 7; i >= 4; i--) {
 		out = (x >> i) % 2;
@@ -58,4 +60,16 @@ void repeat(unsigned char x)	//Кодирование дублированием
 	}
 }
 
-
+void test(void){
+	unsigned char x = 0b00000000;
+	for(x = 0b00000000;x<0b11111111;x+=0b00000001){
+	repeat(x);
+	printf("%d)", x);
+	bin_out(x);
+	printf(": ");
+	bin_out(b1);
+	printf(" - ");
+	bin_out(b2);
+	b1 = b2 = 0;
+	printf("\n\n");	}
+}
