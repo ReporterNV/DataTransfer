@@ -7,9 +7,6 @@ int main(int argc, char *argv[])
 	FILE *file;
 	FILE *out;
 
-	printf("ARG: %s\n", argv[1]);
-	printf("ARG: %s\n", argv[2]);
-	printf("ARG: %s\n", argv[3]);
 
 	if ((file = fopen(argv[1], "r+b")) == 0) {
 		printf("Cannot open file:%s\n", argv[1]);
@@ -21,7 +18,7 @@ int main(int argc, char *argv[])
 		fclose(file);
 		return 0;
 	}
-	if (*argv[3] == 'f') {
+	if (!argv[3]) {
 		while ((fscanf(file, "%hhc", &x)) != EOF) {
 			if (x == 10) {
 				fprintf(out, "%c", 10);
@@ -49,6 +46,7 @@ int main(int argc, char *argv[])
 			print_bin(b1);
 			print_bin(b2);
 			printf("OUT:");
+			print_bin(repeat_decipher());
 			fprintf(out, "%c", repeat_decipher());
 			puts("");
 
