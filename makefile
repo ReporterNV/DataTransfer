@@ -1,9 +1,9 @@
 all: Lab1.c
 	gcc Lab1.c -o xr
-test: xr 1.txt 2.txt 
-	./xr 1.txt 2.txt out.txt
-	./xr out.txt 1.txt 22.txt
-	./xr out.txt 2.txt 11.txt
+test: xr text out oy
+	./xr text out 
+	./xr out oy f
+	cat text oy	
 view: 11.txt 1.txt 2.txt 22.txt
 	cat 1.txt
 	cat 11.txt

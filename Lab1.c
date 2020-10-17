@@ -24,15 +24,10 @@ int main(int argc, char *argv[])
 				fprintf(out, "%c", 10);
 				continue;
 			}
-			printf("IN:");
-			print_bin(x);
 			repeat(x);
-			printf("OUT:");
-			print_bin(b1);
 			fprintf(out, "%c", b1);
-			print_bin(b2);
 			fprintf(out, "%c", b2);
-			puts("");
+			puts(".");
 
 		}
 	} else {
@@ -42,43 +37,12 @@ int main(int argc, char *argv[])
 				continue;
 			}
 			fscanf(file, "%hhc", &b2);
-			printf("IN:");
-			print_bin(b1);
-			print_bin(b2);
-			printf("OUT:");
-			print_bin(repeat_decipher());
+			repeat_decipher();
 			fprintf(out, "%c", repeat_decipher());
-			puts("");
+			puts(".");
 
 		}
 	}
-/*	
-	while((fscanf(file, "%hhc", &b1)) != EOF){ 
-	if(x == 10){
-		fprintf(out, "%c", 10);
-		continue;}
-	fscanf(file, "%hhc", &b2); 	
-	repeat_decipher();
-	puts("");
-	}
-*/
-
-	//x= 0b10110101;
-	/*printf("IN:");
-
-	   print_bin(x);
-	   puts("");
-	   printf("OUT:");
-	   repeaT(X);
-	   puts("");
-	   print_bin(b1);
-	   puts("");
-	   print_bin(b2);
-
-	   puts("");
-	   fprintf(out, "%c", b1);
-	   fprintf(out, "%c", b2);
-	 */
 	fclose(file);
 	fclose(out);
 	return 0;
