@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<string.h>
+
 unsigned char b1 = 0;
 unsigned char b2 = 0;
 //add getopt
@@ -31,7 +33,7 @@ void print_bin(unsigned char x)	//Выводит в бинарном форма�
 	puts("");
 }
 
-unsigned char repeat_decipher()	//Кодирование дублированием
+unsigned char dupl_decipher()	//Кодирование дублированием
 {
 	unsigned char c = 0;
 	for (int i = 0; i <= 3; i++)
@@ -42,7 +44,34 @@ unsigned char repeat_decipher()	//Кодирование дублировани�
 	return c;
 }
 
-void repeat(unsigned char x)	//Кодирование дублированием
+void manchester_code(unsigned char x)	//Манчес
+{	
+	b1 = b2 = 0;
+
+	unsigned char out;
+	for (int i = 7; i >= 4; i--) {
+		out = (x >> i) % 2;
+		b1 += out << (2 * i - 7);
+		b1 += !out << (2 * i - 8);
+	}
+
+	for (int i = 3; i >= 0; i--) {
+		out = (x >> i) % 2;
+		b2 += out << (2 * i + 1);
+		b2 += !out << (2 * i);
+	}
+}
+
+unsigned char manchester_decode(unsigned char x){	//Декодер Манчестерского кода
+unsigned char c = 0;
+	for (int i = 0; i <= 3; i++)
+		c += (b1 >> i * 2) % 2 << 4 + i;
+
+	for (int i = 0; i <= 3; i++)	//Переписать со смещением?
+		c += (b2 >> i * 2) % 2 << i;
+	return c;
+}
+void dupl(unsigned char x)	//кодирование дублированием
 {	
 	b1 = b2 = 0;
 
@@ -63,7 +92,7 @@ void repeat(unsigned char x)	//Кодирование дублированием
 void test(void){
 	unsigned char x = 0b00000000;
 	for(x = 0b00000000;x<0b11111111;x+=0b00000001){
-	repeat(x);
+	dupl(x);
 	printf("%d)", x);
 	bin_out(x);
 	printf(": ");
