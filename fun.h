@@ -45,7 +45,7 @@ unsigned char dupl_decipher()	//Кодирование дублирование�
 }
 
 void manchester_code(unsigned char x)	//Манчес
-{	
+{
 	b1 = b2 = 0;
 
 	unsigned char out;
@@ -62,8 +62,9 @@ void manchester_code(unsigned char x)	//Манчес
 	}
 }
 
-unsigned char manchester_decode(unsigned char x){	//Декодер Манчестерского кода
-unsigned char c = 0;
+unsigned char manchester_decode(unsigned char x)
+{				//Декодер Манчестерского кода
+	unsigned char c = 0;
 	for (int i = 0; i <= 3; i++)
 		c += (b1 >> i * 2) % 2 << 4 + i;
 
@@ -71,8 +72,9 @@ unsigned char c = 0;
 		c += (b2 >> i * 2) % 2 << i;
 	return c;
 }
-void dupl(unsigned char x)	//кодирование дублированием
-{	
+
+void duplication(unsigned char x)	//кодирование дублированием
+{
 	b1 = b2 = 0;
 
 	unsigned char out;
@@ -89,16 +91,18 @@ void dupl(unsigned char x)	//кодирование дублированием
 	}
 }
 
-void test(void){
-	unsigned char x = 0b00000000;
-	for(x = 0b00000000;x<0b11111111;x+=0b00000001){
-	dupl(x);
-	printf("%d)", x);
-	bin_out(x);
-	printf(": ");
-	bin_out(b1);
-	printf(" - ");
-	bin_out(b2);
-	b1 = b2 = 0;
-	printf("\n\n");	}
+void test(void)
+{
+	unsigned char x = 0 b00000000;
+	for (x = 0 b00000000; x < 0 b11111111; x += 0 b00000001) {
+		dupl(x);
+		printf("%d)", x);
+		bin_out(x);
+		printf(": ");
+		bin_out(b1);
+		printf(" - ");
+		bin_out(b2);
+		b1 = b2 = 0;
+		printf("\n\n");
+	}
 }

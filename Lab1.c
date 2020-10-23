@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	switch (argv[3][0]) {
 	case 'm':
 		if (strcmp(argv[3], "md")) {
-			while ((fscanf(file, "%hhc", &x)) != eof) {
+			while ((fscanf(file, "%hhc", &x)) != EOF) {
 				if (x == 10) {
 					fprintf(out, "%c", 10);
 					continue;
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			}
 		} else {
 
-			while ((fscanf(file, "%hhc", &b1)) != eof) {
+			while ((fscanf(file, "%hhc", &b1)) != EOF) {
 				if (b1 == 10) {
 					fprintf(out, "%c", 10);
 					continue;
@@ -47,20 +47,19 @@ int main(int argc, char *argv[])
 		break;
 	case 'd':
 		if (strcmp(argv[3], "dd")) {
-			while ((fscanf(file, "%hhc", &x)) != eof) {
+			while ((fscanf(file, "%hhc", &x)) != EOF) {
 				if (x == 10) {
 					fprintf(out, "%c", 10);
 					continue;
 				}
 				dupl(x);
-				fprintf(out, "%c", b1);
-				fprintf(out, "%c", b2);
+				fprintf(out, "%c\n", b1, b2);
 				printf(".");
 
 			}
 		} else {
 
-			while ((fscanf(file, "%hhc", &b1)) != eof) {
+			while ((fscanf(file, "%hhc", &b1)) != EOF) {
 				if (b1 == 10) {
 					fprintf(out, "%c", 10);
 					continue;
