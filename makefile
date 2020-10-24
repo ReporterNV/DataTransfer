@@ -1,12 +1,15 @@
 compile: main.c
 	gcc main.c -o lab1
 
-test: lab1 text out 
-	./lab1 -f text -o out -m
-	./lab1 -f out -test -m d
-	cat text oy	
-
+test: lab1 text out test
+	./lab1 -f text -o out -t c
+	./lab1 -f out -o test -t d
+	cat test text
+	
 view:
+	cat text
+	cat out
+	cat test
 
 rm: 
 	rm lab1 out test

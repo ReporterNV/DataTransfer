@@ -33,17 +33,18 @@ void test_deciphe(unsigned char byte[])
 	unsigned char x = 0;
 
 	for (int i = 0; i <= 3; i++) {
-		bit = byte[0] >> (i * 2);
-		if (bit != (byte[0] >> ((i * 2) + 1)))
+		bit = (byte[0] >> (i * 2)) % 2;
+		if (bit != (byte[0] >> ((i * 2) + 1)) % 2)
 			fprintf(stderr,
 				"\nPOSSIBLE ERROR. BITS ARE NOT EQUAL.\n");
 		x += bit << 4 + i;
 	}
-	for (int i = 0; i <= 3; i++) {	//Переписать со смещением?
-		bit = ((byte[1] >> (i * 2) % 2) << i);
-		if (bit != (byte[1] >> ((i * 2) + 1)))
+	for (int i = 0; i <= 3; i++) {
+		bit = (byte[1] >> (i * 2)) % 2;
+		if (bit != (byte[1] >> ((i * 2) + 1)) % 2)
 			fprintf(stderr,
-				"\nPOSSIBLE ERROR. BITS ARE NOT EQUAL.\n");
+				"\nPOSSIBLE ERROR. BITS ARE NOT EQUAL:%x != %x\n",
+				bit, (byte[1] >> ((i * 2) + 1)) % 2);
 		x += bit << i;
 	}
 	byte[0] = x;
