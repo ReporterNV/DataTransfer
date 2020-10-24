@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 	enum type action = chipher;
 //set args
 
-	while ((opt = getopt(argc, argv, ":if:o:t:")) != -1) {
+	while ((opt = getopt(argc, argv, ":if:o:t:d:m:r:")) != -1) {
 		char *key;
 		switch (opt) {
 
@@ -44,6 +44,26 @@ int main(int argc, char *argv[])
 				action = chipher;
 			}
 			break;
+		case 'd':
+			if (*optarg == 'd') {
+				function = duplication_deciphe;
+				action = dechipher;
+
+			} else {
+				function = duplication;
+				action = chipher;
+			}
+			break;
+		case 'r':
+			if (*optarg == 'd') {
+				function = repeat_deciphe;
+				action = dechipher;
+
+			} else {
+				function = repeat;
+				action = chipher;
+			}
+			break;
 
 		case ':':
 			printf("this key need a value: %s\n", optarg);
@@ -58,6 +78,8 @@ int main(int argc, char *argv[])
 			printf("-d dechiphe\n");
 			printf("\nCode types:\n");
 			printf("-m Manchester code\n");
+			printf("-d Duplication code\n");
+			printf("-r Repeat code\n");
 			printf("-t TEST code\n\n");
 			printf("work only with ASCII\n");
 			if (file)
@@ -89,16 +111,14 @@ int main(int argc, char *argv[])
 	if (action == chipher) {
 		while ((fscanf(file, "%c", &x)) != EOF) {
 			buff[0] = x;
-			//fprintf(out, "%c", x);
-			//printf("%c[%d]:\n", x, x);
-			//bin_out(x);
+
 			printf("IN: %c[%d]: ", x, x);
 			bin_out(x);
 			function(buff);
 
 			printf("OUT1: %c[%d]: ", buff[0], buff[0]);
 			bin_out(buff[0]);
-			printf("\nOUT2: %c[%d]: ", buff[1], buff[1]);
+			printf("OUT2: %c[%d]: ", buff[1], buff[1]);
 			bin_out(buff[1]);
 			fprintf(out, "%c", buff[0]);
 			fprintf(out, "%c", buff[1]);
@@ -114,7 +134,7 @@ int main(int argc, char *argv[])
 			buff[1] = x;
 			printf("IN1: %c[%d]: ", buff[0], buff[0]);
 			bin_out(buff[0]);
-			printf("\nIN2: %c[%d]: ", buff[1], buff[1]);
+			printf("IN2: %c[%d]: ", buff[1], buff[1]);
 			bin_out(buff[1]);
 
 			function(buff);
