@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 	enum type action = chipher;
 //set args
 
-	while ((opt = getopt(argc, argv, ":if:o:t:d:m:r:")) != -1) {
+	while ((opt = getopt(argc, argv, ":hf:o:t:d:m:r:i:")) != -1) {
 		char *key;
 		switch (opt) {
 
@@ -74,15 +74,19 @@ int main(int argc, char *argv[])
 		case '?':
 			printf("unknown option: %c\n", optopt);
 			break;
-		case 'i':
+		case 'h':
 			printf
 			    ("Usage: ./lab1 -f file_for_read -o file_for_out -{code_type} -{d,c} \n");
 			printf("-c encrypt\n");
 			printf("-d dechiphe\n");
+			printf("-h help\n");
 			printf("\nCode types:\n");
 			printf("-m Manchester code\n");
 			printf("-d Duplication code\n");
 			printf("-r Repeat code\n");
+			printf("-i Inversionepeat code\n");
+			printf("-2 Two-Ten\n");
+			printf("-g Grey code\n");
 			printf("-t TEST code\n\n");
 			printf("work only with ASCII\n");
 			if (file)
