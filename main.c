@@ -18,22 +18,25 @@ int main(int argc, char *argv[])
 
 		case 'f':
 			key = optarg;
-			printf("fileIN: %s\n", key);
+			//printf("fileIN: %s\n", key);
 			file = fopen(key, "r+b");
 			break;
 
 		case 'o':
 			key = optarg;
-			printf("fileOUT: %s\n", key);
+			//printf("fileOUT: %s\n", key);
 			out = fopen(key, "w");
 			break;
-/*		case 'm':
-			if (*optarg == 'd')
+		case 'm':
+			if (*optarg == 'd') {
 				function = manchester_deciphe;
-			else
+				action = dechipher;
+			} else {
 				function = manchester;
-						break;
-*/
+				action = chipher;
+			}
+			break;
+
 		case 't':
 			if (*optarg == 'd') {
 				function = test_deciphe;
